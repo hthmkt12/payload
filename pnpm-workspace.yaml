@@ -31,15 +31,33 @@ savePrefix: ''
 verifyDepsBeforeRun: false
 
 overrides:
+  '@babel/core': '^7.29.1'
   '@types/request>form-data': '^2.5.6'
   'amazon-cognito-identity-js>js-cookie': '^3.0.7'
+  'brace-expansion@1': '^1.1.18'
+  'brace-expansion@2': '^2.1.2'
+  'brace-expansion@5': '^5.0.8'
+  browserslist: '^4.28.7'
   copyfiles: 'catalog:'
   cross-env: 'catalog:'
+  dompurify: '^3.4.14'
   dotenv: 'catalog:'
+  fast-uri: '^3.1.6'
+  'fast-xml-parser@4': '^4.5.5'
+  'fast-xml-parser@5': '^5.10.1'
   graphql: '16.8.1'
+  js-yaml: '^4.3.2'
+  nanoid: '^3.3.18'
   react: 'catalog:'
   react-dom: 'catalog:'
+  'rollup@3': '^3.30.0'
+  sharp: '^0.35.4'
+  'tar@7': '^7.5.21'
   typescript: 'catalog:'
+  'undici@6': '^6.28.0'
+  'undici@7': '^7.29.0'
+  'ws@8': '^8.21.0'
+  'yaml@2': '^2.8.3'
 
 # Replaces pnpm v10 `onlyBuiltDependencies`: packages permitted to run install scripts.
 allowBuilds:
