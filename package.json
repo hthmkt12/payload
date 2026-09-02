@@ -163,7 +163,7 @@
     "@axe-core/playwright": "4.11.0",
     "@clack/prompts": "1.2.0",
     "@libsql/client": "0.14.0",
-    "@next/bundle-analyzer": "16.2.7",
+    "@next/bundle-analyzer": "16.2.12",
     "@payloadcms/db-postgres": "workspace:*",
     "@payloadcms/eslint-config": "workspace:*",
     "@payloadcms/eslint-plugin": "workspace:*",
@@ -202,7 +202,7 @@
     "lint-staged": "15.2.7",
     "minimist": "1.2.8",
     "mongoose": "8.22.1",
-    "next": "16.2.7",
+    "next": "16.2.12",
     "node-gyp": "12.3.0",
     "open": "^10.1.0",
     "p-limit": "^5.0.0",
@@ -213,7 +213,7 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "rimraf": "6.0.1",
-    "sharp": "0.32.6",
+    "sharp": "0.35.4",
     "shelljs": "0.8.5",
     "slash": "3.0.0",
     "sort-package-json": "^2.10.0",
@@ -253,6 +253,7 @@
       "mcp-handler>@modelcontextprotocol/sdk": "1.27.1",
       "react": "$react",
       "react-dom": "$react-dom",
+      "sharp": "^0.35.4",
       "typescript": "$typescript"
     }
   }
