@@ -26,7 +26,6 @@ export const connect: Connect = async function connect(
     let binding = this.binding
 
     if (readReplicas && readReplicas === 'first-primary') {
-      // @ts-expect-error - need to have types that support withSession binding from D1
       binding = this.binding.withSession('first-primary')
     }
 
