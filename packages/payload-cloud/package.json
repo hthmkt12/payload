@@ -47,8 +47,8 @@
     "@aws-sdk/credential-providers": "^3.614.0",
     "@aws-sdk/lib-storage": "^3.614.0",
     "@payloadcms/email-nodemailer": "workspace:*",
-    "amazon-cognito-identity-js": "^6.1.2",
-    "nodemailer": "^8.0.5"
+    "amazon-cognito-identity-js": "^6.3.20",
+    "nodemailer": "^9.1.1"
   },
   "devDependencies": {
     "@types/nodemailer": "^8.0.0",
