@@ -14,7 +14,7 @@ import type { JSONSchema4 } from 'json-schema'
 import type { Metadata } from 'next'
 import type { DestinationStream, Level, LoggerOptions } from 'pino'
 import type React from 'react'
-import type { default as sharp } from 'sharp'
+import type { Sharp, SharpOptions } from 'sharp'
 
 import type { ComponentRenderer } from '../admin/adapters/render.js'
 import type { ServerAdapter } from '../admin/adapters/server.js'
@@ -763,8 +763,8 @@ export type SharpDependency = (
     | Uint8ClampedArray
     | Uint16Array
     | Uint32Array,
-  options?: sharp.SharpOptions,
-) => sharp.Sharp
+  options?: SharpOptions,
+) => Sharp
 
 export type CORSConfig = {
   headers?: string[]
