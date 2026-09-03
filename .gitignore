@@ -12,6 +12,7 @@ AGENTS.local.md
 CLAUDE.local.md
 .claude/commands/*.local.md
 .claude/artifacts
+.agentkit/
 .claude/skills/add-config-custom-component/
 .claude/skills/check-payload-patterns/
 .claude/skills/log-pattern/
