@@ -1,11 +1,12 @@
 # Phase 2: Reskin Core CSS Tokens
 
 - **Parent Plan**: `plans/260903-1558-ui-design-reskin/plan.md`
-- **Status**: Pending execution
+- **Status**: Completed
 - **Target Files**:
   - `packages/ui/src/css/colors.css`
-  - `packages/ui/src/css/theme.css`
+  - `packages/ui/src/css/radius.css`
   - `packages/ui/src/css/elevations.css`
+  - `packages/ui/src/css/design-tokens.css`
 
 ---
 
