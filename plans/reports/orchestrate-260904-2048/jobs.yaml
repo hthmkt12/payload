@@ -1,0 +1,44 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: fix-type-contract-security
+    runtime: internal
+    agent: aki-maker
+    task: fix
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,coding,pattern (brief) | missing: none
+      Clean up and harden the frontend renderer:
+      1. Remove throwaway test file: app/(app)/test/page.tsx
+      2. In app/(app)/posts/[slug]/page.tsx:
+         - Secure payload query: add where condition to ensure only published posts are returned (_status: { equals: 'published' }).
+         - Replace any in category mapping with proper typing or safe narrowing.
+      3. In app/(app)/components/blocks/RenderBlocks.tsx:
+         - Remove '& any' from LayoutBlock type. Use proper type union matching generated blocks (HeroBlock | FeatureGridBlock | CallToActionBlock) from test/_community/payload-types.ts.
+      4. In app/(app)/components/blocks/Hero.tsx:
+         - Remove unused dead field 'backgroundImage?: any' from HeroProps.
+    timeout: 10m
+    expected_output: "Clean type contracts, secure published query, and deleted throwaway test page."
+
+  - id: verify-quality-and-smoke
+    depends_on: [fix-type-contract-security]
+    runtime: internal
+    agent: tester
+    task: test
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,coding (brief) | missing: none
+      Verify that the application compiles cleanly without TypeScript errors on touched files and dev server loads /posts/example-post properly.
+    timeout: 10m
+    expected_output: "Successful typecheck/compilation and verified smoke test."
+
+  - id: git-tag-and-package
+    depends_on: [verify-quality-and-smoke]
+    runtime: internal
+    agent: git-manager
+    task: ship
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      Stage changes, create conventional commit, create git tag v0.2.0-starter-template, and push to fork/main.
+    timeout: 5m
+    expected_output: "Committed changes and pushed release tag to remote fork."

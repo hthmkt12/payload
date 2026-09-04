@@ -5,7 +5,6 @@ export interface HeroProps {
   subheadline?: string | null
   ctaText?: string | null
   ctaLink?: string | null
-  backgroundImage?: any
 }
 
 export const HeroBlockComponent: React.FC<HeroProps> = ({

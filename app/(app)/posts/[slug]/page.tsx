@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import React from 'react'
 
+import type { Category } from '../../../../test/_community/payload-types.js'
 import { RenderBlocks } from '../../components/blocks/index.js'
 
 interface PostPageProps {
@@ -21,9 +22,18 @@ export default async function PostPage({ params }: PostPageProps) {
   const { docs: posts } = await payload.find({
     collection: 'posts',
     where: {
-      slug: {
-        equals: slug,
-      },
+      and: [
+        {
+          slug: {
+            equals: slug,
+          },
+        },
+        {
+          _status: {
+            equals: 'published',
+          },
+        },
+      ],
     },
     limit: 1,
   })
@@ -35,7 +45,9 @@ export default async function PostPage({ params }: PostPageProps) {
   }
 
   const categoryTitles = Array.isArray(post.categories)
-    ? post.categories.map((cat: any) => (typeof cat === 'object' ? cat.title : cat)).filter(Boolean)
+    ? post.categories
+        .map((cat: number | Category) => (typeof cat === 'object' && cat !== null ? cat.title : ''))
+        .filter(Boolean)
     : []
 
   return (

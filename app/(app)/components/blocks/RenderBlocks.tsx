@@ -1,13 +1,15 @@
 import React from 'react'
 
+import type {
+  CallToActionBlock,
+  FeatureGridBlock,
+  HeroBlock,
+} from '../../../../test/_community/payload-types.js'
 import { CallToActionBlockComponent } from './CallToAction.js'
 import { FeatureGridBlockComponent } from './FeatureGrid.js'
 import { HeroBlockComponent } from './Hero.js'
 
-export type LayoutBlock =
-  | ({ blockType: 'hero'; id?: string | null } & any)
-  | ({ blockType: 'featureGrid'; id?: string | null } & any)
-  | ({ blockType: 'callToAction'; id?: string | null } & any)
+export type LayoutBlock = HeroBlock | FeatureGridBlock | CallToActionBlock
 
 export interface RenderBlocksProps {
   blocks?: LayoutBlock[] | null
