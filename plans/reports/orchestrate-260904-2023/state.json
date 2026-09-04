@@ -1,0 +1,14 @@
+{
+  "runId": "orchestrate-260904-2023",
+  "status": "completed",
+  "jobs": {
+    "git-checkpoint-commit": {
+      "status": "success",
+      "attempts": 1
+    },
+    "phase4-visual-smoke-test": {
+      "status": "success",
+      "attempts": 1
+    }
+  }
+}

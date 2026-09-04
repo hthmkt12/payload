@@ -1,0 +1,14 @@
+{
+  "runId": "orchestrate-260904-2030",
+  "status": "completed",
+  "jobs": {
+    "write-template-guide": {
+      "status": "success",
+      "attempts": 1
+    },
+    "commit-all-milestone-artifacts": {
+      "status": "success",
+      "attempts": 1
+    }
+  }
+}

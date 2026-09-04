@@ -1,0 +1,19 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: write-template-guide
+    runtime: internal
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: "Create comprehensive template documentation at docs/template-guide.md covering Linear/Vercel design system, business collections architecture, layout blocks usage, and developer quickstart."
+    timeout: 5m
+    expected_output: "docs/template-guide.md written with architecture specs and usage examples."
+
+  - id: commit-all-milestone-artifacts
+    runtime: internal
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: "Stage and commit all completed plan artifacts, visual screenshots, and docs/template-guide.md under conventional commit docs: template guide and completed business schema artifacts."
+    timeout: 3m
+    expected_output: "Working tree clean and committed."
+    depends_on: [write-template-guide]

@@ -1,0 +1,9 @@
+{
+  "runtimes": {
+    "internal": {
+      "available": true,
+      "type": "subagent",
+      "models": ["fable"]
+    }
+  }
+}

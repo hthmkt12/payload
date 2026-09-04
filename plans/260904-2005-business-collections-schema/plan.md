@@ -1,7 +1,7 @@
 # Plan: Core Business Collections & Content Architecture
 
 - **Plan ID**: `260904-2005-business-collections-schema`
-- **Status**: READY
+- **Status**: COMPLETED
 - **Owner**: payload-monorepo-template
 - **Target**: `test/_community/` hoặc template app
 
@@ -23,22 +23,23 @@ Xây dựng kiến trúc dữ liệu sản phẩm đầy đủ trên nền giao 
 
 ## 2. Phases
 
-### Phase 1: Categories & Media Collections
+### Phase 1: Categories & Media Collections (COMPLETED)
 
 - Định nghĩa schema `Categories` với quan hệ parent-child.
 - Định nghĩa schema `Media` với static uploads path, resizing presets.
 
-### Phase 2: Posts Collection & RichText Lexical
+### Phase 2: Posts Collection & RichText Lexical (COMPLETED)
 
 - Định nghĩa schema `Posts` với đầy đủ các field: title, slug (auto-slug hook), excerpt, content (Lexical Editor), category relationship, featured image.
 - Thiết lập versions & drafts (draft/publish states).
 
-### Phase 3: Modular Layout Blocks
+### Phase 3: Modular Layout Blocks (COMPLETED)
 
 - Tạo thư mục `blocks/` chứa schema definitions cho Hero, FeatureGrid, CTA.
 - Tích hợp `blocks` field vào Pages/Posts collection.
 
-### Phase 4: Verification & Smoke Test
+### Phase 4: Verification & Smoke Test (COMPLETED)
 
 - Kiểm tra TypeScript types phát sinh (`generate:types`).
 - Khởi động dev server kiểm tra giao diện nhập liệu trực quan qua Playwright.
+- Ảnh chụp thực tế: `plans/reports/orchestrate-260904-2023/blocks-drawer-dark.png`, `hero-block-form-dark.png`.

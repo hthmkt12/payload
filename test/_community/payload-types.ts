@@ -62,16 +62,16 @@ export type SupportedTimezones =
   | 'Pacific/Fiji';
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "LexicalNodes_193C2115".
+ * via the `definition` "LexicalNodes_F66BA470".
  */
-export type LexicalNodes_193C2115 =
+export type LexicalNodes_F66BA470 =
   | SerializedTextNode
   | SerializedTabNode
   | SerializedLineBreakNode
-  | SerializedParagraphNode<LexicalNodes_193C2115>
+  | SerializedParagraphNode<LexicalNodes_F66BA470>
   | SerializedHorizontalRuleNode
   | SerializedUploadNode<'media'>
-  | SerializedQuoteNode<LexicalNodes_193C2115>
+  | SerializedQuoteNode<LexicalNodes_F66BA470>
   | SerializedRelationshipNode<
       | 'posts'
       | 'categories'
@@ -81,11 +81,11 @@ export type LexicalNodes_193C2115 =
       | 'payload-preferences'
       | 'payload-migrations'
     >
-  | SerializedAutoLinkNode<LexicalNodes_193C2115, LexicalLinkFields>
-  | SerializedLinkNode<LexicalNodes_193C2115, LexicalLinkFields>
-  | SerializedListNode<LexicalNodes_193C2115>
-  | SerializedListItemNode<LexicalNodes_193C2115>
-  | SerializedHeadingNode<LexicalNodes_193C2115>;
+  | SerializedAutoLinkNode<LexicalNodes_F66BA470, LexicalLinkFields>
+  | SerializedLinkNode<LexicalNodes_F66BA470, LexicalLinkFields>
+  | SerializedListNode<LexicalNodes_F66BA470>
+  | SerializedListItemNode<LexicalNodes_F66BA470>
+  | SerializedHeadingNode<LexicalNodes_F66BA470>;
 
 export interface Config {
   auth: {
@@ -114,7 +114,7 @@ export interface Config {
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
   };
   db: {
-    defaultIDType: string;
+    defaultIDType: number;
   };
   fallbackLocale: null;
   globals: {
@@ -158,12 +158,12 @@ export interface UserAuthOperations {
  * via the `definition` "posts".
  */
 export interface Post {
-  id: string;
+  id: number;
   title: string;
   slug: string;
-  categories?: (string | Category)[] | null;
-  featuredImage?: (string | null) | Media;
-  content?: LexicalRichText<LexicalNodes_193C2115> | null;
+  categories?: (number | Category)[] | null;
+  featuredImage?: (number | null) | Media;
+  content?: LexicalRichText<LexicalNodes_F66BA470> | null;
   layout?: (HeroBlock | FeatureGridBlock | CallToActionBlock)[] | null;
   updatedAt: string;
   createdAt: string;
@@ -174,10 +174,10 @@ export interface Post {
  * via the `definition` "categories".
  */
 export interface Category {
-  id: string;
+  id: number;
   title: string;
   slug: string;
-  parent?: (string | null) | Category;
+  parent?: (number | null) | Category;
   updatedAt: string;
   createdAt: string;
 }
@@ -186,7 +186,7 @@ export interface Category {
  * via the `definition` "media".
  */
 export interface Media {
-  id: string;
+  id: number;
   alt: string;
   caption?: string | null;
   updatedAt: string;
@@ -236,7 +236,7 @@ export interface HeroBlock {
   subheadline?: string | null;
   ctaText?: string | null;
   ctaLink?: string | null;
-  backgroundImage?: (string | null) | Media;
+  backgroundImage?: (number | null) | Media;
   id?: string | null;
   blockName?: string | null;
   blockType: 'hero';
@@ -280,7 +280,7 @@ export interface CallToActionBlock {
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
-  id: string;
+  id: number;
   key: string;
   data:
     | {
@@ -297,7 +297,7 @@ export interface PayloadKv {
  * via the `definition` "users".
  */
 export interface User {
-  id: string;
+  id: number;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -322,28 +322,28 @@ export interface User {
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
-  id: string;
+  id: number;
   document?:
     | ({
         relationTo: 'posts';
-        value: string | Post;
+        value: number | Post;
       } | null)
     | ({
         relationTo: 'media';
-        value: string | Media;
+        value: number | Media;
       } | null)
     | ({
         relationTo: 'categories';
-        value: string | Category;
+        value: number | Category;
       } | null)
     | ({
         relationTo: 'users';
-        value: string | User;
+        value: number | User;
       } | null);
   globalSlug?: string | null;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   updatedAt: string;
   createdAt: string;
@@ -353,10 +353,10 @@ export interface PayloadLockedDocument {
  * via the `definition` "payload-preferences".
  */
 export interface PayloadPreference {
-  id: string;
+  id: number;
   user: {
     relationTo: 'users';
-    value: string | User;
+    value: number | User;
   };
   key?: string | null;
   value?:
@@ -376,7 +376,7 @@ export interface PayloadPreference {
  * via the `definition` "payload-migrations".
  */
 export interface PayloadMigration {
-  id: string;
+  id: number;
   name?: string | null;
   batch?: number | null;
   updatedAt: string;
@@ -578,7 +578,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
  * via the `definition` "menu".
  */
 export interface Menu {
-  id: string;
+  id: number;
   globalText?: string | null;
   updatedAt?: string | null;
   createdAt?: string | null;
