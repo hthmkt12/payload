@@ -1,0 +1,19 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: git-checkpoint-commit
+    runtime: internal
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: "Stage and commit changes in test/_community/ and plans/ under feat(community): core business collections schema and modular layout blocks."
+    timeout: 3m
+    expected_output: "Git working tree committed cleanly."
+
+  - id: phase4-visual-smoke-test
+    runtime: internal
+    task: test
+    cwd: F:/payload-monorepo-template
+    prompt: "Start dev server on test/_community, verify admin UI and new collections via Playwright, and stop server cleanly."
+    timeout: 5m
+    expected_output: "Admin UI verified, screenshots/snapshots captured, server terminated."
+    depends_on: [git-checkpoint-commit]

@@ -7,8 +7,24 @@ export const MediaCollection: CollectionConfig = {
   access: {
     create: () => true,
     read: () => true,
+    update: () => true,
+    delete: () => true,
   },
-  fields: [],
+  admin: {
+    useAsTitle: 'alt',
+    defaultColumns: ['filename', 'alt', 'mimeType', 'filesize', 'updatedAt'],
+  },
+  fields: [
+    {
+      name: 'alt',
+      type: 'text',
+      required: true,
+    },
+    {
+      name: 'caption',
+      type: 'text',
+    },
+  ],
   upload: {
     crop: true,
     focalPoint: true,
@@ -29,6 +45,7 @@ export const MediaCollection: CollectionConfig = {
         width: 1200,
       },
     ],
+    mimeTypes: ['image/*'],
   },
   versions: false,
 }

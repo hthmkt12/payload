@@ -1,0 +1,10 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: visual-smoke-test
+    runtime: internal
+    task: test
+    cwd: F:/payload-monorepo-template
+    prompt: "Execute Playwright MCP visual smoke test on localhost:3000/admin across Light and Dark mode for Dashboard, Table View, and Form Edit view."
+    timeout: 10m
+    expected_output: "Clean visual screenshots validating Linear/Vercel design system tokens, typography, and theme styling."

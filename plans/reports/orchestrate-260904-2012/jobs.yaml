@@ -1,0 +1,19 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: phase2-posts-enhancement
+    runtime: internal
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: "Enhance Posts collection schema with slug, category relationship, featured image media relation, and drafts/versions support."
+    timeout: 5m
+    expected_output: "Posts collection fully configured with relations and versions."
+
+  - id: phase2-type-generation
+    runtime: internal
+    task: test
+    cwd: F:/payload-monorepo-template
+    prompt: "Generate and verify TypeScript types for the updated Posts schema."
+    timeout: 3m
+    expected_output: "Generated types successfully written to payload-types.ts without errors."
+    depends_on: [phase2-posts-enhancement]

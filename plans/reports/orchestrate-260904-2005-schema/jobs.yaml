@@ -1,0 +1,10 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: create-business-schema-plan
+    runtime: internal
+    task: plan
+    cwd: F:/payload-monorepo-template
+    prompt: "Create comprehensive business collection plan in plans/260904-2005-business-collections-schema/plan.md."
+    timeout: 5m
+    expected_output: "Detailed phase roadmap for Categories, Media, Posts, and Layout Blocks."

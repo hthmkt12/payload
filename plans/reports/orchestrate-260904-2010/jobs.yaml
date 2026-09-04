@@ -1,0 +1,10 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: phase1-schema-implementation
+    runtime: internal
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: "Implement Categories collection schema with parent-child relation, update Media collection with alt text and mimeTypes, wire into config.ts, and compile types."
+    timeout: 5m
+    expected_output: "Categories and Media schemas integrated, types generated cleanly."

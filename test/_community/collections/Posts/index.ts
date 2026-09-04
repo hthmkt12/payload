@@ -2,17 +2,55 @@ import type { CollectionConfig } from 'payload'
 
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 
+import { CallToActionBlock, FeatureGridBlock, HeroBlock } from '../../blocks/index.js'
+import { categoriesSlug } from '../Categories/index.js'
+import { mediaSlug } from '../Media/index.js'
+
 export const postsSlug = 'posts'
 
 export const PostsCollection: CollectionConfig = {
   slug: postsSlug,
   admin: {
     useAsTitle: 'title',
+    defaultColumns: ['title', 'slug', 'categories', 'featuredImage', 'updatedAt'],
+  },
+  access: {
+    create: () => true,
+    read: () => true,
+    update: () => true,
+    delete: () => true,
   },
   fields: [
     {
       name: 'title',
       type: 'text',
+      required: true,
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      required: true,
+      admin: {
+        position: 'sidebar',
+      },
+      index: true,
+    },
+    {
+      name: 'categories',
+      type: 'relationship',
+      relationTo: categoriesSlug,
+      hasMany: true,
+      admin: {
+        position: 'sidebar',
+      },
+    },
+    {
+      name: 'featuredImage',
+      type: 'upload',
+      relationTo: mediaSlug,
+      admin: {
+        position: 'sidebar',
+      },
     },
     {
       name: 'content',
@@ -21,6 +59,13 @@ export const PostsCollection: CollectionConfig = {
         features: ({ defaultFeatures }) => [...defaultFeatures],
       }),
     },
+    {
+      name: 'layout',
+      type: 'blocks',
+      blocks: [HeroBlock, FeatureGridBlock, CallToActionBlock],
+    },
   ],
-  versions: false,
+  versions: {
+    drafts: true,
+  },
 }

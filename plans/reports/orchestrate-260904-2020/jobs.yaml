@@ -1,0 +1,19 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: phase3-layout-blocks
+    runtime: internal
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: "Create Hero, FeatureGrid, and CallToAction blocks in test/_community/blocks/ and attach blocks field to Posts collection."
+    timeout: 5m
+    expected_output: "Layout blocks defined and integrated into Posts collection schema."
+
+  - id: phase3-type-generation
+    runtime: internal
+    task: test
+    cwd: F:/payload-monorepo-template
+    prompt: "Run dev:generate-types _community and verify generated block types."
+    timeout: 3m
+    expected_output: "TypeScript types updated in test/_community/payload-types.ts with block definitions."
+    depends_on: [phase3-layout-blocks]

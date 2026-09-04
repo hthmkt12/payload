@@ -1,0 +1,19 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: workspace-hygiene
+    runtime: internal
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: "Verify git status, ensure process ports are clear and untracked reports are correctly recorded."
+    timeout: 3m
+    expected_output: "Confirmed port 3000 free and reports logged."
+
+  - id: business-schema-planning
+    runtime: internal
+    task: scout
+    cwd: F:/payload-monorepo-template
+    prompt: "Plan core business collection schemas and database configuration options for the next implementation phase."
+    timeout: 5m
+    expected_output: "Actionable roadmap for collections and database adapter setup."
+    depends_on: [workspace-hygiene]

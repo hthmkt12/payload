@@ -1,0 +1,28 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: quality-verification
+    runtime: internal
+    task: test
+    cwd: F:/payload-monorepo-template
+    prompt: "Verify TypeScript types and Stylelint rules across all changed files."
+    timeout: 5m
+    expected_output: "Zero errors on tstyche and stylelint."
+
+  - id: milestone-tagging
+    runtime: internal
+    task: release
+    cwd: F:/payload-monorepo-template
+    prompt: "Create annotated git tag ui-reskin-linear-v1.0.0 and push to fork remote."
+    timeout: 3m
+    expected_output: "Git tag pushed successfully."
+    depends_on: [quality-verification]
+
+  - id: upstream-pr-prep
+    runtime: internal
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: "Prepare complete upstream PR description and technical summary for payloadcms/payload."
+    timeout: 5m
+    expected_output: "Markdown summary ready for upstream PR."
+    depends_on: [milestone-tagging]
