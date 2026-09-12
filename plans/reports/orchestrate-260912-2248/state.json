@@ -1,0 +1,25 @@
+﻿{
+  "run_id": "orchestrate-260912-2248",
+  "status": "completed",
+  "current_stage": 3,
+  "jobs": {
+    "create-pr-monitor-script": {
+      "status": "success",
+      "runtime": "internal",
+      "agent": "devops-specialist",
+      "durationMs": 4000
+    },
+    "generate-project-handover": {
+      "status": "success",
+      "runtime": "internal",
+      "agent": "docs-specialist",
+      "durationMs": 3000
+    },
+    "verify-and-archive-session": {
+      "status": "success",
+      "runtime": "internal",
+      "agent": "arbiter",
+      "durationMs": 3000
+    }
+  }
+}

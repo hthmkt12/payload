@@ -1,0 +1,46 @@
+﻿version: 1
+concurrency: 1
+jobs:
+  - id: create-pr-monitor-script
+    runtime: internal
+    agent: devops-specialist
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,coding (brief) | missing: none
+      Create a lightweight PR monitoring helper script in scripts/check-pr-18167.mjs:
+      1. Uses gh CLI to fetch status, reviews, comments, and checks for PR #18167.
+      2. Outputs a clean, human-readable terminal summary for instant re-orientation.
+    timeout: 5m
+    expected_output: "Helper script scripts/check-pr-18167.mjs created and executable."
+
+  - id: generate-project-handover
+    depends_on: [create-pr-monitor-script]
+    runtime: internal
+    agent: docs-specialist
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,docs (brief) | missing: none
+      Generate comprehensive project handover document in plans/260905-1546-fullstack-template-extraction/HANDOVER.md:
+      1. Executive summary of Phase 1-4 fullstack extraction.
+      2. Key architectural decisions and security hardening (safeHref, package allowlist).
+      3. Upstream PR #18167 status and maintenance protocol.
+    timeout: 5m
+    expected_output: "Durable HANDOVER.md created summarizing the completed extraction initiative."
+
+  - id: verify-and-archive-session
+    depends_on: [generate-project-handover]
+    runtime: internal
+    agent: arbiter
+    task: ship
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,release,coding (brief) | missing: none
+      Verify clean workspace, test helper script, commit docs, and produce orchestrate report:
+      1. Run node scripts/check-pr-18167.mjs
+      2. Commit handover doc and monitor script with Conventional Commits (zero AI trailers)
+      3. Push to fork/main
+      4. Produce orchestrate report.md
+    timeout: 5m
+    expected_output: "Session cleanly archived and verified."
