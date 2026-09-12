@@ -74,7 +74,8 @@ Prove the template works from a clean install, update documentation to match sup
 - Standalone verification: Created `templates/fullstack/scripts/verify-standalone.mjs` verifying all required standalone files, clean dependencies, zero external workspace source coupling, and local Turbopack root (`path.resolve(dirname)`).
 - Template registry inclusion: Registered `fullstack` starter in `packages/create-payload-app/src/lib/templates.ts`.
 - Monorepo limitation verified: `pnpm --filter fullstack build` fails with `Could not find the Next.js package (next/package.json)` because `turbopack.root: path.resolve(dirname)` restricts resolution to template root while pnpm hoists `next` to the monorepo root. Verified identical failure on `templates/blank` and `templates/website`. Standalone production build requires execution outside the monorepo.
-- Status: Phase 4 In-Progress / Partial pending standalone packaging CI build verification.
+- Pull Request submitted: [payloadcms/payload#18167](https://github.com/payloadcms/payload/pull/18167) (marked Ready for Review; initial CI status pass).
+- Status: Phase 4 In-Progress / Partial pending upstream review and standalone CI packaging.
 
 ## Risk Assessment
 
