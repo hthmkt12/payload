@@ -1,0 +1,25 @@
+﻿{
+  "run_id": "orchestrate-260912-2245",
+  "status": "completed",
+  "current_stage": 3,
+  "jobs": {
+    "monitor-pr-ci": {
+      "status": "success",
+      "runtime": "internal",
+      "agent": "tester",
+      "durationMs": 4000
+    },
+    "draft-community-showcase": {
+      "status": "success",
+      "runtime": "internal",
+      "agent": "docs-specialist",
+      "durationMs": 3000
+    },
+    "finalize-extraction-milestone": {
+      "status": "success",
+      "runtime": "internal",
+      "agent": "arbiter",
+      "durationMs": 3000
+    }
+  }
+}

@@ -1,0 +1,45 @@
+﻿version: 1
+concurrency: 1
+jobs:
+  - id: monitor-pr-ci
+    runtime: internal
+    agent: tester
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,release (brief) | missing: none
+      Check live GitHub CI checks and discussion status for PR payloadcms/payload#18167:
+      1. Run gh pr view 18167 --repo payloadcms/payload
+      2. Run gh pr checks 18167 --repo payloadcms/payload
+    timeout: 5m
+    expected_output: "All automated PR checks verified and recorded."
+
+  - id: draft-community-showcase
+    depends_on: [monitor-pr-ci]
+    runtime: internal
+    agent: docs-specialist
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,docs,content-write (brief) | missing: none
+      Draft a community showcase guide and announcement in plans/reports/orchestrate-260912-2245/fullstack-showcase.md:
+      1. Concise feature highlights (Next.js 16 + Payload CMS, safeHref URL security, modular layout blocks)
+      2. Quick start instructions (create-payload-app command, env setup)
+      3. Channel-specific copy (Discord #showcase, GitHub Discussions, X/Twitter)
+    timeout: 5m
+    expected_output: "Professional community showcase announcement drafted."
+
+  - id: finalize-extraction-milestone
+    depends_on: [draft-community-showcase]
+    runtime: internal
+    agent: arbiter
+    task: ship
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,release,coding (brief) | missing: none
+      Finalize the extraction milestone:
+      1. Verify git working tree clean
+      2. Produce final orchestrate report
+      3. Append run record to orchestrate-history.jsonl
+    timeout: 5m
+    expected_output: "Milestone successfully archived and documented."
