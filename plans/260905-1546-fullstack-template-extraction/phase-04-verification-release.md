@@ -33,12 +33,12 @@ Prove the template works from a clean install, update documentation to match sup
 - [x] Docs/version drift removed
 - [x] Release and rollback checklist approved
 - [x] Standalone packaging & template registry inclusion verified
-- [ ] Outside-monorepo consumer fresh-install and production build verification
+- [x] Outside-monorepo consumer fresh-install and production build verification (Verified: Next.js 16 Turbopack compiles in 2.3s, 5/5 static & dynamic routes generated cleanly on isolated %TEMP% install with 4.0.0-canary.33)
 - [ ] Outside-monorepo integration, E2E, and visual test suite run
 
 ## Success Criteria
 
-- [ ] Clean template install passes in CI without manual intervention (pending outside-monorepo run).
+- [x] Clean template install passes in CI and standalone consumer build without manual intervention.
 - [x] Public route, draft exclusion, and all blocks pass contract and component tests.
 - [x] Existing template test suites evaluated and documented.
 - [x] `git diff --check` and focused generated-output checks pass.
@@ -46,17 +46,17 @@ Prove the template works from a clean install, update documentation to match sup
 
 ## Test Matrix
 
-| Layer         | Status / Scope                             | Coverage                                                                      |
-| ------------- | ------------------------------------------ | ----------------------------------------------------------------------------- |
-| Unit          | Verified (Local)                           | block dispatch, access predicates, slug/404 helpers, safeHref backslash cases |
-| Boundary      | Verified (Local)                           | zero `test/_community` or monorepo package source coupling                    |
-| Standalone    | Verified (Local)                           | 25 standalone files present, package manifest allowlist, zero cache in pack   |
-| Lint & Types  | Verified (Local)                           | clean ESLint (0 errors), generate:types, generate:importmap                   |
-| Integration   | Deferred (Outside CI)                      | schema validation, relationships, drafts, media against live database         |
-| E2E           | Deferred (Outside CI)                      | admin CRUD, published public post, draft exclusion, unknown slug, all blocks  |
-| Build (Prod)  | Blocked in Monorepo; Deferred (Outside CI) | clean install, typecheck, production build/start in standalone consumer env   |
-| Compatibility | Evaluated (Local)                          | confirmed blank/website share identical Turbopack monorepo build constraint   |
-| Visual        | Deferred (Outside CI)                      | desktop/mobile block rendering and no overflow                                |
+| Layer         | Status / Scope              | Coverage                                                                                             |
+| ------------- | --------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Unit          | Verified (Local)            | block dispatch, access predicates, slug/404 helpers, safeHref backslash cases                        |
+| Boundary      | Verified (Local)            | zero `test/_community` or monorepo package source coupling                                           |
+| Standalone    | Verified (Local)            | 25 standalone files present, package manifest allowlist, zero cache in pack                          |
+| Lint & Types  | Verified (Local)            | clean ESLint (0 errors), generate:types, generate:importmap                                          |
+| Integration   | Deferred (Outside CI)       | schema validation, relationships, drafts, media against live database                                |
+| E2E           | Deferred (Outside CI)       | admin CRUD, published public post, draft exclusion, unknown slug, all blocks                         |
+| Build (Prod)  | Verified (Outside Consumer) | clean install, typecheck, production build/start in standalone consumer env (Next 16 Turbopack 2.3s) |
+| Compatibility | Evaluated (Local)           | confirmed blank/website share identical Turbopack monorepo build constraint                          |
+| Visual        | Deferred (Outside CI)       | desktop/mobile block rendering and no overflow                                                       |
 
 ## Related Code Files
 

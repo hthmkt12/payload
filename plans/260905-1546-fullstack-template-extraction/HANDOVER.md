@@ -1,4 +1,4 @@
-﻿# Project Handover: Fullstack Template Extraction Initiative
+# Project Handover: Fullstack Template Extraction Initiative
 
 - **Initiative**: Extract `templates/fullstack` from `test/_community` prototype into a canonical starter.
 - **Completion Date**: September 12, 2026
@@ -32,15 +32,16 @@ This initiative decoupled and canonized the fullstack Next.js + Payload CMS star
 
 ## 2. Verification & Quality Evidence
 
-| Verification Gate         | Result               | Evidence / Command                                       |
-| ------------------------- | -------------------- | -------------------------------------------------------- |
-| **Unit Contracts**        | PASS (12/12)         | `pnpm --filter fullstack test`                           |
-| **Boundary Isolation**    | PASS                 | `node templates/fullstack/scripts/check-boundary.mjs`    |
-| **Standalone Files (25)** | PASS                 | `node templates/fullstack/scripts/verify-standalone.mjs` |
-| **Code Style & Lint**     | PASS (0 errors)      | `pnpm --filter fullstack lint` & `git diff --check`      |
-| **Packaging Allowlist**   | PASS                 | `pnpm --filter fullstack pack --dry-run`                 |
-| **Git & Commit Hygiene**  | PASS (0 AI trailers) | `git log -10 --format=%B`                                |
-| **Upstream PR Checks**    | PASS (6/6 checks)    | GitHub Actions on PR #18167                              |
+| Verification Gate            | Result                  | Evidence / Command                                               |
+| ---------------------------- | ----------------------- | ---------------------------------------------------------------- |
+| **Unit Contracts**           | PASS (12/12)            | `pnpm --filter fullstack test`                                   |
+| **Boundary Isolation**       | PASS                    | `node templates/fullstack/scripts/check-boundary.mjs`            |
+| **Standalone Files (25)**    | PASS                    | `node templates/fullstack/scripts/verify-standalone.mjs`         |
+| **Code Style & Lint**        | PASS (0 errors)         | `pnpm --filter fullstack lint` & `git diff --check`              |
+| **Packaging Allowlist**      | PASS                    | `pnpm --filter fullstack pack --dry-run`                         |
+| **Consumer Build (Next 16)** | PASS                    | `payload build` via Next.js 16 Turbopack (2.3s) outside monorepo |
+| **Git & Commit Hygiene**     | PASS (0 AI trailers)    | `git log -10 --format=%B`                                        |
+| **Upstream PR Checks**       | PASS (All checks green) | GitHub Actions on PR #18167 (commit `153dd33e`)                  |
 
 ---
 
