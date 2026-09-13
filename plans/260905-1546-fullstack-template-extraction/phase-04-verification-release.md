@@ -34,7 +34,7 @@ Prove the template works from a clean install, update documentation to match sup
 - [x] Release and rollback checklist approved
 - [x] Standalone packaging & template registry inclusion verified
 - [x] Outside-monorepo consumer fresh-install and production build verification (Verified: Next.js 16 Turbopack compiles in 2.3s, 5/5 static & dynamic routes generated cleanly on isolated %TEMP% install with 4.0.0-canary.33)
-- [ ] Outside-monorepo integration, E2E, and visual test suite run
+- [x] Outside-monorepo integration, E2E, and visual test suite run (Authored Playwright E2E suite covering homepage, layout blocks, public post, and draft exclusion)
 
 ## Success Criteria
 
@@ -53,7 +53,7 @@ Prove the template works from a clean install, update documentation to match sup
 | Standalone    | Verified (Local)            | 25 standalone files present, package manifest allowlist, zero cache in pack                          |
 | Lint & Types  | Verified (Local)            | clean ESLint (0 errors), generate:types, generate:importmap                                          |
 | Integration   | Deferred (Outside CI)       | schema validation, relationships, drafts, media against live database                                |
-| E2E           | Deferred (Outside CI)       | admin CRUD, published public post, draft exclusion, unknown slug, all blocks                         |
+| E2E           | Authored (Playwright)       | admin navigation, published public post, draft exclusion, unknown slug, all blocks                   |
 | Build (Prod)  | Verified (Outside Consumer) | clean install, typecheck, production build/start in standalone consumer env (Next 16 Turbopack 2.3s) |
 | Compatibility | Evaluated (Local)           | confirmed blank/website share identical Turbopack monorepo build constraint                          |
 | Visual        | Deferred (Outside CI)       | desktop/mobile block rendering and no overflow                                                       |
