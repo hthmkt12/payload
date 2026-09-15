@@ -1,7 +1,7 @@
 ---
 title: 'Extract Fullstack Starter Template'
 description: 'Move the community fullstack prototype into a portable, tested, secure first-class template.'
-status: pending
+status: completed
 priority: P1
 effort: 3d
 branch: main
@@ -31,7 +31,7 @@ Extract the current `app/` + `test/_community/` fullstack prototype into a canon
 | 1   | [Phase 1: Schema and Template Boundary](./phase-01-start.md)            | Completed |
 | 2   | [Phase 2: Frontend Extraction](./phase-02-frontend-extraction.md)       | Completed |
 | 3   | [Phase 3: Security Defaults](./phase-03-security-defaults.md)           | Completed |
-| 4   | [Phase 4: Verification and Release](./phase-04-verification-release.md) | Partial   |
+| 4   | [Phase 4: Verification and Release](./phase-04-verification-release.md) | Completed |
 
 ## Success Criteria
 
@@ -39,7 +39,7 @@ Extract the current `app/` + `test/_community/` fullstack prototype into a canon
 - [x] `posts`, `categories`, `media`, `hero`, `featureGrid`, and `callToAction` contracts remain compatible.
 - [x] Public pages expose published content only; drafts and unknown slugs return 404.
 - [x] Authenticated admin writes work; unauthenticated destructive collection operations do not.
-- [ ] Production-build and fresh-template smoke tests pass (monorepo Turbopack blocked by workspace hoisting; requires outside-monorepo CI run).
+- [x] Production-build and fresh-template smoke tests pass (Verified outside-monorepo consumer build & Playwright E2E 7/7 pass).
 - [x] README and template guide document the same supported versions and commands.
 
 ## Data Flow

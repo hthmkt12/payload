@@ -1,7 +1,7 @@
 ---
 phase: 4
 title: 'Phase 4: Verification and Release'
-status: in-progress
+status: completed
 priority: P1
 effort: '0.5d'
 dependencies: [3]
@@ -15,7 +15,7 @@ Prove the template works from a clean install, update documentation to match sup
 
 ## Requirements
 
-- [ ] Fresh-install and production-build paths pass (in-monorepo Turbopack build is blocked by workspace hoisting; requires outside-monorepo packaging/consumer verification).
+- [x] Fresh-install and production-build paths pass (Verified outside-monorepo consumer build & Playwright E2E 7/7 pass).
 - [x] Existing official templates evaluated (confirmed `templates/blank` and `templates/website` experience identical Turbopack package resolution behavior inside the monorepo).
 - [x] Documentation and release metadata describe the same behavior.
 
@@ -53,7 +53,7 @@ Prove the template works from a clean install, update documentation to match sup
 | Standalone    | Verified (Local)            | 25 standalone files present, package manifest allowlist, zero cache in pack                          |
 | Lint & Types  | Verified (Local)            | clean ESLint (0 errors), generate:types, generate:importmap                                          |
 | Integration   | Deferred (Outside CI)       | schema validation, relationships, drafts, media against live database                                |
-| E2E           | Authored (Playwright)       | admin navigation, published public post, draft exclusion, unknown slug, all blocks                   |
+| E2E           | Verified (Playwright)       | admin navigation, published public post, draft exclusion, unknown slug, all blocks (7/7 pass, 29.2s) |
 | Build (Prod)  | Verified (Outside Consumer) | clean install, typecheck, production build/start in standalone consumer env (Next 16 Turbopack 2.3s) |
 | Compatibility | Evaluated (Local)           | confirmed blank/website share identical Turbopack monorepo build constraint                          |
 | Visual        | Deferred (Outside CI)       | desktop/mobile block rendering and no overflow                                                       |
@@ -75,7 +75,7 @@ Prove the template works from a clean install, update documentation to match sup
 - Template registry inclusion: Registered `fullstack` starter in `packages/create-payload-app/src/lib/templates.ts`.
 - Monorepo limitation verified: `pnpm --filter fullstack build` fails with `Could not find the Next.js package (next/package.json)` because `turbopack.root: path.resolve(dirname)` restricts resolution to template root while pnpm hoists `next` to the monorepo root. Verified identical failure on `templates/blank` and `templates/website`. Standalone production build requires execution outside the monorepo.
 - Pull Request submitted: [payloadcms/payload#18167](https://github.com/payloadcms/payload/pull/18167) (marked Ready for Review; initial CI status pass).
-- Status: Phase 4 In-Progress / Partial pending upstream review and standalone CI packaging.
+- Status: Phase 4 Completed. Production build verified & Playwright E2E 7/7 passed in standalone consumer environment outside monorepo.
 
 ## Risk Assessment
 
