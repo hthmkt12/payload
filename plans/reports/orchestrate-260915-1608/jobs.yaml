@@ -1,0 +1,44 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: cleanup-test-env
+    runtime: internal
+    agent: devops-specialist
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,devops (brief) | missing: none
+      Clean up temporary standalone test resources:
+      1. Stop and remove docker container payload-mongo-27018
+      2. Verify no orphan processes on port 3005 or 27018
+    timeout: 5m
+    expected_output: "Temporary test containers and ports cleaned up."
+
+  - id: monitor-pr-upstream
+    depends_on: [cleanup-test-env]
+    runtime: internal
+    agent: tester
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,review (brief) | missing: none
+      Check upstream PR #18167:
+      1. Run gh pr view 18167 --repo payloadcms/payload --json number,title,state,reviewDecision,reviewRequests,comments,statusCheckRollup
+      2. Record any reviewer feedback, blockers, or required actions
+    timeout: 5m
+    expected_output: "Live PR status and review signals captured."
+
+  - id: sync-branch-and-status
+    depends_on: [monitor-pr-upstream]
+    runtime: internal
+    agent: arbiter
+    task: ship
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,release (brief) | missing: none
+      Reconcile local git state:
+      1. Merge feat/fullstack-template into main
+      2. Verify working tree clean and all tests green
+      3. Document orchestration run in report.md
+    timeout: 5m
+    expected_output: "Branches synchronized and run reported."
