@@ -1,0 +1,18 @@
+{
+  "runId": "orchestrate-260925-2307",
+  "status": "completed",
+  "jobs": {
+    "monitor-pr-upstream": {
+      "status": "success",
+      "attempts": 1
+    },
+    "verify-template-integrity": {
+      "status": "success",
+      "attempts": 1
+    },
+    "audit-onboarding-docs": {
+      "status": "success",
+      "attempts": 1
+    }
+  }
+}

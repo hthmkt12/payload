@@ -1,0 +1,45 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: monitor-pr-upstream
+    runtime: internal
+    agent: tester
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,review (brief) | missing: none
+      Check upstream PR #18167:
+      1. Run node scripts/check-pr-18167.mjs or gh pr view
+      2. Record review requests, blocking comments, check run statuses
+    timeout: 5m
+    expected_output: "Live PR status, reviewer signals, and CI check statuses captured."
+
+  - id: verify-template-integrity
+    depends_on: [monitor-pr-upstream]
+    runtime: internal
+    agent: tester
+    task: test
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,test (brief) | missing: none
+      Verify templates/fullstack integrity:
+      1. Run pnpm --filter fullstack test
+      2. Run node templates/fullstack/scripts/check-boundary.mjs
+      3. Run node templates/fullstack/scripts/verify-standalone.mjs
+    timeout: 5m
+    expected_output: "All unit tests, boundary isolation, and standalone checks passing."
+
+  - id: audit-onboarding-docs
+    depends_on: [verify-template-integrity]
+    runtime: internal
+    agent: docs-manager
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,docs (brief) | missing: none
+      Audit templates/fullstack/README.md:
+      1. Verify setup instructions match standalone behavior
+      2. Check environment variables and scripts documentation
+      3. Ensure quickstart steps work out of the box
+    timeout: 5m
+    expected_output: "Onboarding audit report with zero-friction verification."
