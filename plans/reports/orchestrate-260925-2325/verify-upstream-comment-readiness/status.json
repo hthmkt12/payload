@@ -1,0 +1,15 @@
+{
+  "id": "verify-upstream-comment-readiness",
+  "runtime": "internal",
+  "model": "gemini-3.8-flash-medium",
+  "agent": "tester",
+  "task": "review",
+  "capabilityTier": "C2",
+  "riskTier": "R0",
+  "status": "success",
+  "exitCode": 0,
+  "durationMs": 2800,
+  "timedOut": false,
+  "attempts": 1,
+  "worktree": null
+}

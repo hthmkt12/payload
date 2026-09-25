@@ -1,0 +1,45 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: verify-upstream-comment-readiness
+    runtime: internal
+    agent: tester
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,review (brief) | missing: none
+      Verify gh CLI permissions and prepare comment command for PR #18167:
+      1. Check gh auth status and target PR 18167
+      2. Prepare formatted comment file scripts/pr-comment-draft.md
+    timeout: 5m
+    expected_output: "PR comment payload prepared and confirmed executable."
+
+  - id: author-canary-smoke-runner
+    depends_on: [verify-upstream-comment-readiness]
+    runtime: internal
+    agent: devops-specialist
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,devops (brief) | missing: none
+      Create scripts/smoke-test-canary.mjs:
+      1. Script tests create-payload-app@canary in a temporary directory with template fullstack
+      2. Validates package creation, dependencies, and build
+      3. Cleans up temp directory on exit
+    timeout: 5m
+    expected_output: "Standalone canary smoke test script authored and verified."
+
+  - id: archive-readiness-run
+    depends_on: [author-canary-smoke-runner]
+    runtime: internal
+    agent: git-manager
+    task: ship
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,git (brief) | missing: none
+      Commit new tooling and run reports:
+      1. Stage scripts/smoke-test-canary.mjs, plans/reports/orchestrate-260925-2325/
+      2. Commit with conventional commit feat(scripts): add post-merge canary smoke test runner
+      3. Push to fork/main
+    timeout: 5m
+    expected_output: "Tooling committed and pushed to fork/main."
