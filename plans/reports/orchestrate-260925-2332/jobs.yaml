@@ -1,0 +1,44 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: poll-pr-live-state
+    runtime: internal
+    agent: tester
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,review (brief) | missing: none
+      Poll live status of PR #18167:
+      1. Execute node scripts/check-pr-18167.mjs
+      2. Record any newly arrived comments or reviewer assignments
+    timeout: 5m
+    expected_output: "Live PR status confirmed unchanged or recorded."
+
+  - id: update-maintenance-runbook
+    depends_on: [poll-pr-live-state]
+    runtime: internal
+    agent: docs-manager
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,docs (brief) | missing: none
+      Update plans/260905-1546-fullstack-template-extraction/HANDOVER.md:
+      1. Add scripts/smoke-test-canary.mjs to Post-Merge Verification section
+      2. Add scripts/pr-comment-draft.md command to Reviewer Feedback section
+    timeout: 5m
+    expected_output: "HANDOVER.md updated with newly authored automation scripts."
+
+  - id: commit-and-push-runbook
+    depends_on: [update-maintenance-runbook]
+    runtime: internal
+    agent: git-manager
+    task: ship
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,git (brief) | missing: none
+      Stage and commit handover updates and orchestration reports:
+      1. Stage HANDOVER.md, plans/reports/orchestrate-260925-2332/
+      2. Commit with docs(plans): update handover runbook with smoke test and comment scripts
+      3. Push to fork/main
+    timeout: 5m
+    expected_output: "Handover updates committed and pushed to fork/main."

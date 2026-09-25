@@ -54,9 +54,17 @@ This initiative decoupled and canonized the fullstack Next.js + Payload CMS star
   ```
 - **Reviewer Feedback Response**:
   - Reviewers assigned: Elliot DeNolf (`denolfe`), Alessio Gravili (`AlessioGr`), Jake Fletcher (`jacobsfletch`), Jarrod Flesch (`JarrodMFlesch`).
+  - Pre-drafted maintainer check-in comment:
+    ```bash
+    gh pr comment 18167 --repo payloadcms/payload --body-file scripts/pr-comment-draft.md
+    ```
   - If review feedback requires adjustments, make targeted commits to branch `feat/fullstack-template` and push to `fork`.
 - **Post-Merge Verification**:
-  - Once merged to `payloadcms/payload:main`, test creating a new app:
+  - Automated post-merge canary smoke runner:
+    ```bash
+    node scripts/smoke-test-canary.mjs
+    ```
+  - Once merged to `payloadcms/payload:main`, test creating a new app manually:
     ```bash
     pnpm create payload-app@canary test-app -t fullstack
     ```
