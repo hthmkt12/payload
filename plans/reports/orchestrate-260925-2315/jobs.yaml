@@ -1,0 +1,43 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: commit-evidence-and-sync
+    runtime: internal
+    agent: git-manager
+    task: ship
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,git (brief) | missing: none
+      Stage and commit orchestration reports and history:
+      1. Stage plans/reports/orchestrate-260925-2307/ and plans/reports/orchestrate-history.jsonl
+      2. Commit with conventional commit docs(plans): archive orchestrate run 260925-2307
+    timeout: 5m
+    expected_output: "Working tree clean, orchestration run committed."
+
+  - id: draft-pr-status-update
+    depends_on: [commit-evidence-and-sync]
+    runtime: internal
+    agent: docs-manager
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,docs (brief) | missing: none
+      Draft maintainer status check-in for PR #18167:
+      1. Highlight green CI, 7/7 standalone E2E tests, 12/12 unit tests, zero monorepo coupling
+      2. Keep tone respectful, concise, and helpful for denolfe, AlessioGr, jacobsfletch, JarrodMFlesch
+    timeout: 5m
+    expected_output: "Ready-to-post PR status update comment draft."
+
+  - id: draft-launch-announcement
+    depends_on: [draft-pr-status-update]
+    runtime: internal
+    agent: copywriter
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,copy (brief) | missing: none
+      Create post-merge launch announcement copy:
+      1. Highlight Next.js 16 App Router + Payload 4.0 canonical starter
+      2. Include create-payload-app command and key features (Linear design, modular blocks, hardened links)
+    timeout: 5m
+    expected_output: "Polished launch announcement copy for community and social channels."

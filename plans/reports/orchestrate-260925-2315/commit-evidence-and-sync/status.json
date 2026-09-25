@@ -1,0 +1,15 @@
+{
+  "id": "commit-evidence-and-sync",
+  "runtime": "internal",
+  "model": "gemini-3.8-flash-medium",
+  "agent": "git-manager",
+  "task": "ship",
+  "capabilityTier": "C2",
+  "riskTier": "R1",
+  "status": "success",
+  "exitCode": 0,
+  "durationMs": 4500,
+  "timedOut": false,
+  "attempts": 1,
+  "worktree": null
+}
