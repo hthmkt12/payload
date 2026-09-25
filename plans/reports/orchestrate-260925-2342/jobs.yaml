@@ -1,0 +1,44 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: post-upstream-pr-comment
+    runtime: internal
+    agent: git-manager
+    task: implement
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,git (brief) | missing: none
+      Post comment to PR #18167:
+      1. Execute gh pr comment 18167 --repo payloadcms/payload --body-file scripts/pr-comment-draft.md
+      2. Capture stdout/stderr and exit code
+    timeout: 5m
+    expected_output: "Comment successfully posted to upstream PR."
+
+  - id: verify-comment-delivery
+    depends_on: [post-upstream-pr-comment]
+    runtime: internal
+    agent: tester
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,review (brief) | missing: none
+      Verify comment on PR #18167:
+      1. Execute gh pr view 18167 --repo payloadcms/payload --json comments
+      2. Verify comment appears in comments list and url is valid
+    timeout: 5m
+    expected_output: "Live comment presence on GitHub confirmed."
+
+  - id: archive-engagement-run
+    depends_on: [verify-comment-delivery]
+    runtime: internal
+    agent: git-manager
+    task: ship
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,git (brief) | missing: none
+      Archive run and push to fork:
+      1. Stage plans/reports/orchestrate-260925-2342/ and orchestrate-history.jsonl
+      2. Commit with docs(plans): archive orchestrate run 260925-2342
+      3. Push to fork/main
+    timeout: 5m
+    expected_output: "Run archived and pushed to fork/main."
