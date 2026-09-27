@@ -1,0 +1,43 @@
+version: 1
+concurrency: 1
+jobs:
+  - id: poll-upstream-pr-state
+    runtime: internal
+    agent: git-manager
+    task: scout
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,git (brief) | missing: none
+      Poll live upstream PR #18167 state:
+      1. Execute node scripts/check-pr-18167.mjs
+      2. Verify PR state, CI checks, and review comments from maintainers
+    timeout: 5m
+    expected_output: "Live status of PR #18167 verified."
+
+  - id: verify-canary-smoke-runner
+    depends_on: [poll-upstream-pr-state]
+    runtime: internal
+    agent: tester
+    task: test
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,test (brief) | missing: none
+      Verify canary smoke test runner in dry-run mode:
+      1. Execute node scripts/smoke-test-canary.mjs --dry-run
+      2. Verify template registration in create-payload-app
+    timeout: 5m
+    expected_output: "Canary smoke test runner dry-run passed."
+
+  - id: verify-launch-readiness
+    depends_on: [verify-canary-smoke-runner]
+    runtime: internal
+    agent: docs-manager
+    task: review
+    cwd: F:/payload-monorepo-template
+    prompt: |
+      [RULES] agent,review (brief) | missing: none
+      Verify launch announcement and post-merge runbook readiness:
+      1. Check launch announcement copy in plans/reports/orchestrate-260925-2315
+      2. Check handover runbook instructions
+    timeout: 5m
+    expected_output: "Launch materials and post-merge runbook readiness confirmed."

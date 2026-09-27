@@ -1,0 +1,11 @@
+{
+  "runId": "orchestrate-260927-2305",
+  "status": "completed",
+  "startedAt": "2026-09-27T16:05:00Z",
+  "completedAt": "2026-09-27T16:08:00Z",
+  "jobs": {
+    "poll-upstream-pr-state": "success",
+    "verify-canary-smoke-runner": "success",
+    "verify-launch-readiness": "success"
+  }
+}

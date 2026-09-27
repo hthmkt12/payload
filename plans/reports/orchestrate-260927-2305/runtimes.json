@@ -1,0 +1,20 @@
+{
+  "runtimes": [
+    {
+      "id": "internal",
+      "kind": "internal",
+      "state": "available",
+      "binary": null,
+      "version": null,
+      "authenticated": true,
+      "hostOS": "win32",
+      "models": ["ag/gemini-3.8-flash-medium"],
+      "agents": ["git-manager", "tester", "docs-manager"],
+      "headless": false,
+      "cwdControl": "argument-only",
+      "approval": "auto",
+      "toolGating": "granular",
+      "isolation": "prompt-only"
+    }
+  ]
+}

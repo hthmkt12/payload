@@ -1,0 +1,15 @@
+{
+  "id": "verify-canary-smoke-runner",
+  "runtime": "internal",
+  "model": "ag/gemini-3.8-flash-medium",
+  "agent": "tester",
+  "task": "test",
+  "capabilityTier": "C2",
+  "riskTier": "R0",
+  "status": "success",
+  "exitCode": 0,
+  "durationMs": 1800,
+  "timedOut": false,
+  "attempts": 1,
+  "worktree": null
+}
